@@ -12,7 +12,7 @@
   "main": "./lib/palvelukartta.js",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/JaniL/palvelukartta.git"
   },
   "keywords": [
     "palvelukartta",
