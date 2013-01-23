@@ -1,6 +1,6 @@
 {
   "name": "palvelukartta",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Jani Luukko <jj.luukko@gmail.com>",
   "description": "Module for using Helsinki's Palvelukartta REST API",
   "contributors": [
@@ -25,7 +25,8 @@
   },
   "analyze": false,
   "devDependencies": {
-    "coffee-script": "1.4.x"
+    "coffee-script": "1.4.x",
+    "mocha": "1.8.x"
   },
   "license": "MIT",
   "engines": {
