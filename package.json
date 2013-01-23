@@ -1,0 +1,34 @@
+{
+  "name": "palvelukartta",
+  "version": "0.1.0",
+  "author": "Jani Luukko <jj.luukko@gmail.com>",
+  "description": "Module for using Helsinki's Palvelukartta REST API",
+  "contributors": [
+    {
+      "name": "Jani Luukko",
+      "email": "jj.luukko@gmail.com"
+    }
+  ],
+  "main": "./lib/palvelukartta.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "palvelukartta",
+    "helsinki",
+    "rest",
+    "api"
+  ],
+  "dependencies": {
+    "superagent": "0.12.x"
+  },
+  "analyze": false,
+  "devDependencies": {
+    "coffee-script": "1.4.x"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8"
+  }
+}
