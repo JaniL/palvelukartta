@@ -1,6 +1,6 @@
 {
   "name": "palvelukartta",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": "Jani Luukko <jj.luukko@gmail.com>",
   "description": "Module for using Helsinki's Palvelukartta REST API",
   "contributors": [
@@ -10,6 +10,11 @@
     }
   ],
   "main": "./lib/palvelukartta.js",
+  "types": "./lib/palvelukartta.d.ts",
+  "files": [
+    "lib",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/JaniL/palvelukartta.git"
@@ -21,15 +26,20 @@
     "api"
   ],
   "dependencies": {
-    "superagent": "0.12.x"
+    "superagent": "^10.2.3"
   },
-  "analyze": false,
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --test test/*.test.js"
+  },
   "devDependencies": {
-    "coffee-script": "1.4.x",
-    "mocha": "1.8.x"
+    "@types/node": "^24.3.0",
+    "@types/superagent": "^8.1.9",
+    "nock": "^14.0.10",
+    "typescript": "^5.9.2"
   },
   "license": "MIT",
   "engines": {
-    "node": ">=0.8"
+    "node": ">=18"
   }
 }
