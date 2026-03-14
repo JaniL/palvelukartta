@@ -1,48 +1,104 @@
 # palvelukartta
 
-Simple JavaScript wrapper for REST interface of Helsinki's Palvelukartta service.
+Simple JavaScript wrapper for the City of Helsinki Service Map REST API.
 
-http://www.hel.fi/palvelukartta/
-http://www.hel.fi/palvelukarttaws/rest/ver2.html
+## Maintenance status
 
-Wrapper uses the second version of the api.
+This project is not actively maintained.
 
-# Example
+Bug fixes and small compatibility updates may still happen, but ongoing feature development is not guaranteed.
 
-For information about what you can retrive, see here:
+## API status
 
-http://www.hel.fi/palvelukarttaws/rest/
+- Current default backend in this library: `https://www.hel.fi/palvelukarttaws/rest/v4`
+- Current API documentation: https://www.hel.fi/palvelukarttaws/restpages/index_en.html
+- Legacy callback API is kept for compatibility.
+- A Promise API is available for new code.
 
-For instance, if you want to retrieve all organizations, type the model you want to browse as the first parameter (in this case it's organization), leave the second parameter as null and enter your callback function as the third parameter:
+## Install
 
-    var pk = require('palvelukartta');
-    pk.itemRetrieve('organization', null, function(err, cb) {
-      if (err) {
-        console.log(err);
-      }
-      return(cb);
-    });
+```bash
+npm install palvelukartta
+```
 
-The second parameter is for search parameters.
+## Usage
 
-If you want a data item with certain id, replace the second parameter with an array containing key id with the value you want:
+### Legacy callback API (kept for compatibility)
 
-    var pk = require('palvelukartta');
-    var id = 1;
-    pk.itemRetrieve('organization', { id: id }, function(err, cb) {
-      if (err) {
-        console.log(err);
-      }
-      return(cb);
-    });
+```js
+const pk = require("palvelukartta");
 
-The API also allows you to search units for example by organization. See the API documentation for more information.
+pk.itemRetrieve("organization", null, (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
 
-    var pk = require('palvelukartta');
-    var id = 1;
-    pk.itemRetrieve('unit', { organization: 1000 }, function(err, cb) {
-      if (err) {
-        console.log(err);
-      }
-      return(cb);
-    });
+  console.log(data);
+});
+```
+
+### Promise API (recommended for new code)
+
+```js
+const pk = require("palvelukartta");
+
+async function run() {
+  const data = await pk.itemRetrieveAsync("organization", null);
+  console.log(data);
+}
+
+run().catch(console.error);
+```
+
+### Retrieve a single item by id
+
+```js
+const pk = require("palvelukartta");
+
+pk.itemRetrieve("organization", { id: 91 }, (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  console.log(data);
+});
+```
+
+### Retrieve unit accessibility data
+
+```js
+const pk = require("palvelukartta");
+
+pk.itemRetrieve("unit", { id: 31, accessibility: true }, (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  console.log(data);
+});
+```
+
+## Configuration
+
+You can override the API base URL with environment variable `PALVELUKARTTA_API_BASE_URL`.
+
+Example:
+
+```bash
+PALVELUKARTTA_API_BASE_URL="https://www.hel.fi/palvelukarttaws/rest/v4" node app.js
+```
+
+## Development
+
+```bash
+npm test
+```
+
+To run the optional live API smoke test:
+
+```bash
+LIVE_API_TESTS=1 npm test
+```
